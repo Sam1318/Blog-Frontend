@@ -32,7 +32,38 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+a.custom-hover:hover,
+button.custom-hover:hover {
+  color: #40b7a6 !important;
+  text-decoration: underline !important;
+  transition: color 0.3s ease;
+}
+
+/* .navbar-brand:hover {
+  color: #40b7a6 !important;
+  text-decoration: underline !important;
+  transition: color 0.3s ease;
+  font-size: larger !important;
+  font-weight: bold !important;
+} */
+
+.navbar-brand {
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #40b7a6 !important;
+  text-decoration: underline !important; 
+  font-size: larger !important;
+  font-weight: bold !important;
+}
+
+.nav-link {
+  transition: color 0.3s ease, font-size 0.3s ease;
 }

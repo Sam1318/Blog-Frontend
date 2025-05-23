@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function EditPost() {
   const { id } = useParams();
@@ -17,7 +18,7 @@ export default function EditPost() {
         setLoading(false);
       })
       .catch(() => {
-        alert('Failed to load post');
+        toast.error('Failed to load post');
         navigate('/myposts');
       });
   }, [id, navigate]);
@@ -27,19 +28,19 @@ export default function EditPost() {
 
     axios.put(`/api/posts/${id}`, { title, content }, { withCredentials: true })
       .then(() => {
-        alert('Post updated');
+        toast.success('Post updated');
         navigate(`/posts/${id}`);
       })
-      .catch(() => alert('Failed to update post'));
+      .catch(() => toast.error('Failed to update post'));
   };
 
   if (loading) return <p className="text-center mt-4">Loading...</p>;
 
   return (
     <div className="container mt-4" style={{ maxWidth: '700px' }}>
-      <div className="card shadow-sm">
+      <div className="card shadow-lg">
         <div className="card-body">
-          <h2 className="card-title mb-4">Edit Post</h2>
+          <h2 className="card-title mb-4" style={{ color: '#1a8877', fontWeight: 'bold' }}>Edit Post</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="title" className="form-label">Title</label>
@@ -65,7 +66,7 @@ export default function EditPost() {
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn-primary">Update Post</button>
+            <button type="submit" className="btn mt-4 d-flex justify-content-end" style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }}>Update Post</button>
           </form>
         </div>
       </div>

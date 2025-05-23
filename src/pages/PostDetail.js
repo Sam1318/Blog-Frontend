@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function PostDetail() {
   const [post, setPost] = useState(null);
@@ -13,7 +14,7 @@ export default function PostDetail() {
       .then(res => setPost(res.data))
       .catch(err => {
         console.error(err);
-        alert('Post not found');
+        toast.error('Post not found');
         navigate('/myposts');
       });
   }, [id, navigate]);
@@ -23,12 +24,12 @@ export default function PostDetail() {
 
     axios.delete(`/api/posts/${id}`, { withCredentials: true })
       .then(() => {
-        alert('Post deleted');
+        toast.success('Post deleted');
         navigate('/myposts');
       })
       .catch(err => {
         console.error(err);
-        alert('Failed to delete post');
+        toast.error('Failed to delete post');
       });
   };
 
@@ -42,15 +43,15 @@ export default function PostDetail() {
     <div className="container mt-4" style={{ maxWidth: '700px' }}>
       <div className="card shadow-sm">
         <div className="card-body">
-          <h2 className="card-title mb-3">{post.title}</h2>
-          <p className="text-muted mb-4"><strong>By:</strong> {post.author}</p>
+          <h2 className="card-title mb-3" style={{color: '#1a8877'}}>{post.title}</h2>
+          <p className="text-muted mb-4"><strong>Author Id : </strong> {post.author_id}</p>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
-          <div className="mt-4">
-            <button onClick={handleEdit} className="btn btn-warning me-2">
+          <div className="mt-4 d-flex justify-content-end">
+            <button style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }} onClick={handleEdit} className="btn me-2">
               Edit
             </button>
-            <button onClick={handleDelete} className="btn btn-danger">
+            <button style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }} onClick={handleDelete} className="btn">
               Delete
             </button>
           </div>

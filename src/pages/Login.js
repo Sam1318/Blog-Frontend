@@ -14,7 +14,7 @@ export default function Login() {
       .then(res => {
         console.log(res.data.message);
         toast.success('Login successful!');
-        navigate('/');        
+        navigate('/');
       })
       .catch(err => {
         console.log('Login failed');
@@ -23,31 +23,32 @@ export default function Login() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5" >
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow">
             <div className="card-body">
-              <h3 className="card-title text-center mb-4">Login</h3>
+              <h3 className="card-title text-center mb-4" style={{ color: '#1a8877', fontWeight: 'bold' }} >Login</h3>
               <div className="mb-3">
                 <label className="form-label">Email</label>
-                <input 
-                  type="email" 
-                  className="form-control" 
-                  placeholder="Enter your email" 
-                  onChange={e => setEmail(e.target.value)} 
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter your email"
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
               <div className="mb-3">
                 <label className="form-label">Password</label>
-                <input 
-                  type="password" 
-                  className="form-control" 
-                  placeholder="Enter your password" 
-                  onChange={e => setPassword(e.target.value)} 
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter your password"
+                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
-              <button onClick={handleLogin} className="btn btn-primary w-100">
+              <button onClick={handleLogin} className="btn d-block mx-auto w-50 hover"
+                style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }}>
                 Login
               </button>
             </div>
@@ -57,3 +58,4 @@ export default function Login() {
     </div>
   );
 }
+

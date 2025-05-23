@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PostCard from '../components/PostCard';
+import '../App.css';
+import { toast } from 'react-toastify';
 
 export default function MyPosts() {
   const [posts, setPosts] = useState([]);
@@ -17,7 +19,7 @@ export default function MyPosts() {
             console.log(userPosts, "coming from my post");
           });
       })
-      .catch(err => alert('Please log in first'));
+      .catch(err => toast.error('Please log in first'));
   }, []);
 
   const handleDetails = (id) => {
@@ -28,16 +30,19 @@ export default function MyPosts() {
     <div className="container mt-4" style={{ maxWidth: '700px' }}>
       <div className="card shadow-sm">
         <div className="card-body">
-          <h2 className="card-title mb-4">My Posts</h2>
+          <h2 className="card-title mb-4" style={{ color: "#1a8877" }}>My Posts</h2>
           {posts.length ? (
             posts.map(post => (
               <div key={post.id} className="mb-3">
                 <PostCard post={post} />
+                <div className='text-end mt-2 d-flex justify-content-end'> 
                 <button
-                  className="btn btn-outline-primary mt-2"
+                  className="btn mt-2 d-flex justify-content-end"
+                  style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }}
                   onClick={() => handleDetails(post.id)}>
                   Details
                 </button>
+                </div>
               </div>
             ))
           ) : (

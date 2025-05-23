@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -12,17 +13,17 @@ export default function Signup() {
     axios.post('/api/register', { username, email, password })
       .then(res => {
         console.log(res.data);
-        alert(res.data.message);
+        toast.success(res.data.message);
         navigate('/login');
       })
-      .catch(() => alert('Signup failed'));
+      .catch(() => toast.error('Signup failed'));
   };
 
   return (
     <div className="container mt-5" style={{ maxWidth: '400px' }}>
-      <div className="card shadow-sm">
+      <div className="card shadow-lg">
         <div className="card-body">
-          <h2 className="card-title mb-4 text-center">Signup</h2>
+          <h2 className="card-title mb-4 text-center" style={{ color: '#1a8877', fontWeight: 'bold' }} >Signup</h2>
 
           <input
             type="text"
@@ -47,7 +48,8 @@ export default function Signup() {
 
           <button
             onClick={handleSignup}
-            className="btn btn-primary w-100">
+            className="btn d-block mx-auto w-50 hover"
+                style={{ backgroundColor: '#bff1ea', color: 'black', fontWeight: 'bold' }}>
             Register
           </button>
         </div>
